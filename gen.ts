@@ -23,7 +23,7 @@ function promisify<TThis, TArgs extends unknown[], TResult>(fn: FnWithCallback<T
 
 const randomIntP = promisify(randomInt);
 const n = 4;
-const randomWordIndex = await Promise.all(Array(n).fill(null).map(() => randomIntP(0, words.length)));
+const randomWordIndex = await Promise.all(Array.from({ length: n }, () => randomIntP(0, words.length)));
 const randomWords = randomWordIndex.map(i => words[i]);
 const result = randomWords.join(' ');
 
